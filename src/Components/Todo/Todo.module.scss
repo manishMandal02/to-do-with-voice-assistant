@@ -1,0 +1,118 @@
+.ToDo {
+  height: 100%;
+  > nav {
+    background-color: #773de2;
+    padding: 0.7em 0;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    font-size: 1.5em;
+    letter-spacing: 0.02em;
+    // text-transform: uppercase;
+    font-weight: 700;
+    color: #ffff;
+  }
+  .Wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 5em;
+    width: 100%;
+    .Container {
+      background-color: #000000;
+      display: flex;
+      flex-direction: column;
+      padding: 1.6em 2.6em;
+      width: 30%;
+      border-radius: 0.4em;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+      > p {
+        color: #ffff;
+        font-size: 1.4em;
+        margin: 0;
+        margin-top: -0.4em;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: azure;
+        text-align: center;
+        margin-bottom: 0.6em;
+      }
+      > form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1em;
+        ::placeholder {
+          color: rgba(255, 255, 255, 0.897);
+          opacity: 1;
+        }
+        > input {
+          width: 85%;
+          outline: none;
+          border: 2px solid #6131e6;
+          box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+          border-radius: 0.1em;
+          font-size: 1.16em;
+          font-weight: 300;
+          color: #ffff;
+          padding: 0.4em 0.5em;
+          background-color: transparent;
+        }
+      }
+      .ItemsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding-top: 1.6em;
+        margin-top: 0.6em;
+        max-height: 55vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        .ItemCard {
+          width: 90%;
+          background-color: #ff7f50;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.7em 0.8em;
+          border-radius: 0.2em;
+          margin-bottom: 0.8em;
+          > p {
+            color: #ffff;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0;
+          }
+          > span {
+            > button {
+              background-color: transparent;
+              outline: none;
+              border-radius: 0.2em;
+              border: none;
+              font-size: 1.1em;
+              font-weight: 600;
+              cursor: pointer;
+              color: #ffff;
+              border: 1.5px solid #ffff;
+              padding: 0.2em 0.4em;
+            }
+            > button:nth-child(1) {
+              margin-right: 0.8em;
+              box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            }
+            > button:nth-child(2) {
+              border: none;
+              // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
