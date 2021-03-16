@@ -16,14 +16,25 @@
     align-items: center;
     justify-content: center;
     color: #ffff;
-    padding: 1.3em 1.4em;
+    padding: 1.7em 1.7em;
     border-radius: 50%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     background-color: #08aeea;
     background-image: linear-gradient(50deg, #08aeea 0%, #1ef393 100%);
     > svg {
-      transform: scale(2);
+      transform: scale(2.6);
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .Container {
+    .Mic {
+      svg {
+        padding: 1.3em 1.4em;
+        transform: scale(2);
+      }
     }
   }
 }
