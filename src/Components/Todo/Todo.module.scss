@@ -3,7 +3,6 @@
   > nav {
     background-color: #773de2;
     padding: 0.8em 0;
-    text-align: center;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
       rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     font-size: 1.5em;
@@ -11,6 +10,13 @@
     font-weight: 700;
     color: #ffff;
     border-radius: 0 0 40% 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > img {
+      width: 4%;
+      margin-right: 0.4em;
+    }
   }
   .Wrapper {
     display: flex;
@@ -128,6 +134,13 @@
       padding: 0.6em 0;
       font-size: 1.1em;
       border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > img {
+        width: 10%;
+        margin-right: 0.4em;
+      }
     }
     .Wrapper {
       margin-top: 2em;

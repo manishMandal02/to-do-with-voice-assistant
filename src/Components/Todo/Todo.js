@@ -102,7 +102,10 @@ const Todo = () => {
 
   return (
     <div className={classes.ToDo}>
-      <nav>Monthly Grocery Planning App</nav>
+      <nav>
+        <img src='/logo192.png' alt='logo' />
+        Grocery Planning App
+      </nav>
       <div className={classes.Wrapper}>
         <div className={classes.Container}>
           <p>Plan for the Month of {months[monthNum]}</p>
