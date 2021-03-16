@@ -120,7 +120,7 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
     'let go (of) *item': handelUpdateItemLetgoKona,
     'delete *item': handelDeleteItemKona,
     'hey (kona)': greetUer,
-    '(hi) kona': greetUer,
+    'hi (kona)': greetUer,
     '(i)(am) good': greetUer2,
     'how are you': response1,
   };
