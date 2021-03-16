@@ -18,7 +18,7 @@ export const getAllItemsAction = () => async (dispatch) => {
     dispatch({
       type: GET_ALL_ITEMS_REQUEST,
     });
-    const { data } = await axios.get('http://localhost:5000/grocery/getAll');
+    const { data } = await axios.get('/grocery/getAll');
     dispatch({
       type: GET_ALL_ITEMS_SUCCESS,
       payload: data,
@@ -41,7 +41,7 @@ export const addItemAction = ({ groceryItem, isPurchased }) => async (
     dispatch({
       type: ADD_ITEM_REQUEST,
     });
-    const { data } = await axios.post('http://localhost:5000/grocery/add', {
+    const { data } = await axios.post('/grocery/add', {
       groceryItem,
       isPurchased,
     });
@@ -67,13 +67,10 @@ export const updateIsPurchasedState = ({ id, isPurchased }) => async (
     dispatch({
       type: UPDATE_PURCHASE_STATE_REQUEST,
     });
-    const { data } = await axios.put(
-      'http://localhost:5000/grocery/updatePurchaseStatus',
-      {
-        id,
-        isPurchased,
-      }
-    );
+    const { data } = await axios.put('/grocery/updatePurchaseStatus', {
+      id,
+      isPurchased,
+    });
     dispatch({
       type: UPDATE_PURCHASE_STATE_SUCCESS,
       payload: data,
@@ -95,12 +92,9 @@ export const deleteItemAction = (id) => async (dispatch) => {
       type: DELETE_ITEM_REQUEST,
     });
 
-    const { data } = await axios.put(
-      'http://localhost:5000/grocery/deleteGroceryItem',
-      {
-        id,
-      }
-    );
+    const { data } = await axios.put('/grocery/deleteGroceryItem', {
+      id,
+    });
     dispatch({
       type: DELETE_ITEM_SUCCESS,
       payload: data,

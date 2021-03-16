@@ -64,7 +64,7 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
   const handelUpdateItemLetgoKona = async (name) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/grocery/voice/updateItem?letgo=true',
+        '/grocery/voice/updateItem?letgo=true',
         {
           name,
         },
@@ -85,7 +85,7 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
   const handelDeleteItemKona = async (name) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/grocery/voice/deleteItem',
+        '/grocery/voice/deleteItem',
         {
           name,
         },
