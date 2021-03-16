@@ -9,12 +9,14 @@ import {
   getAllItemsAction,
   updateIsPurchasedState,
 } from '../../Store/Actions/TodoActions';
-import { CircularProgress, Tooltip } from '@material-ui/core';
+import { Snackbar, Tooltip } from '@material-ui/core';
 import {
   DELETE_ITEM_RESET,
   UPDATE_PURCHASE_STATE_RESET,
-  UPDATE_PURCHASE_STATE_SUCCESS,
 } from '../../Store/Actions/ActionTypes';
+import { Alert } from '@material-ui/lab';
+import VoiceAssistant from '../VoiceAssistant/VoiceAssistant';
+import { Delete } from '@material-ui/icons';
 
 const Todo = () => {
   //initialize
@@ -22,6 +24,11 @@ const Todo = () => {
 
   //state
   const [enteredItem, setEnteredItem] = useState('');
+  const [updateVoiceSuccess, setUpdateVoiceSuccess] = useState(false);
+  const [deleteVoiceSuccess, setDeleteVoiceSuccess] = useState(false);
+
+  const [snackbar1, setSnackbar1] = useState(false);
+  const [snackbar2, setSnackbar2] = useState(false);
   //getting the month
   const monthNum = new Date().getMonth();
   const months = [
@@ -45,15 +52,13 @@ const Todo = () => {
   const nonPurchasedItems = items.filter((item) => item.isPurchased !== true);
   const filteredItems = [...nonPurchasedItems, ...purcahsedItems];
 
-  const {
-    loading: updatePurchaseStateLoading,
-    success: updatePurchaseStateSuccess,
-  } = useSelector((state) => state.todo.updatePurchaseState);
+  const { success: updatePurchaseStateSuccess } = useSelector(
+    (state) => state.todo.updatePurchaseState
+  );
 
-  const {
-    loading: deleteItemLoading,
-    success: deleteItemSuccess,
-  } = useSelector((state) => state.todo.deleteItem);
+  const { success: deleteItemSuccess } = useSelector(
+    (state) => state.todo.deleteItem
+  );
 
   const { success: addItemSuccess } = useSelector(
     (state) => state.todo.addItem
@@ -65,17 +70,24 @@ const Todo = () => {
     if (addItemSuccess) {
       setEnteredItem('');
     }
-    if (updatePurchaseStateSuccess) {
+    if (updatePurchaseStateSuccess || updateVoiceSuccess) {
       dispatch({
         type: UPDATE_PURCHASE_STATE_RESET,
       });
     }
-    if (deleteItemSuccess) {
+    if (deleteItemSuccess || deleteVoiceSuccess) {
       dispatch({
         type: DELETE_ITEM_RESET,
       });
     }
-  }, [dispatch, addItemSuccess, updatePurchaseStateSuccess, deleteItemSuccess]);
+  }, [
+    dispatch,
+    addItemSuccess,
+    updatePurchaseStateSuccess,
+    deleteItemSuccess,
+    updateVoiceSuccess,
+    deleteVoiceSuccess,
+  ]);
 
   //add item handler
   const handelAddItem = (e) => {
@@ -85,10 +97,16 @@ const Todo = () => {
   //handel purchase state update for item
   const updatePurchaseHandler = (id, isPurchased) => {
     dispatch(updateIsPurchasedState({ id, isPurchased }));
+    setSnackbar1(true);
+  };
+  //handel purchase state update for item
+  const updatePurchaseHandler2 = (id, isPurchased) => {
+    dispatch(updateIsPurchasedState({ id, isPurchased }));
   };
   //handel delete  item
   const itemDeleteHandler = (id) => {
     dispatch(deleteItemAction(id));
+    setSnackbar2(true);
   };
 
   return (
@@ -136,7 +154,7 @@ const Todo = () => {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            updatePurchaseHandler(item._id, false);
+                            updatePurchaseHandler2(item._id, false);
                           }}
                         >
                           Let Go
@@ -163,11 +181,7 @@ const Todo = () => {
                           itemDeleteHandler(item._id);
                         }}
                       >
-                        {/* {deleteItemLoading ? (
-                          'hello'
-                        ) : ( */}
-                        <i className='fas fa-trash'></i>
-                        {/* )} */}
+                        <Delete />
                       </button>
                     </Tooltip>
                   </span>
@@ -176,6 +190,34 @@ const Todo = () => {
             )}
           </div>
         </div>
+        <div className={classes.VoiceAssistant}>
+          <VoiceAssistant
+            updateSuccess={() =>
+              setUpdateVoiceSuccess(updateVoiceSuccess === true ? false : true)
+            }
+            deleteSuccess={() =>
+              setDeleteVoiceSuccess(deleteVoiceSuccess === true ? false : true)
+            }
+          />
+        </div>
+        <Snackbar
+          open={snackbar1}
+          autoHideDuration={2000}
+          onClose={() => setSnackbar1(false)}
+        >
+          <Alert onClose={() => setSnackbar1(false)} severity='success'>
+            Item marked as purcahsed
+          </Alert>
+        </Snackbar>
+        <Snackbar
+          open={snackbar2}
+          autoHideDuration={2000}
+          onClose={() => setSnackbar2(false)}
+        >
+          <Alert onClose={() => setSnackbar2(false)} severity='success'>
+            Item deleted
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
