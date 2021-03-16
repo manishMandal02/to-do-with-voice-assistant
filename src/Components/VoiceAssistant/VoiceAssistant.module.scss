@@ -27,12 +27,59 @@
     }
   }
 }
+.VoiceCommands {
+  position: relative;
+  background-color: #08aeea;
+  background-image: linear-gradient(50deg, #08aeea 0%, #00ad6b 100%);
+  color: #fff;
+  padding: 0.4em 0;
+  border: 2px solid #ffffff;
+  position: absolute;
+  bottom: 135%;
+  width: 240%;
+  right: -68%;
+  border-radius: 0.3em;
+  > p {
+    margin: 0;
+    padding: 0.4em 0.5em;
+  }
+  > p:nth-child(1) {
+    margin: 0;
+    padding: 0.1em 0.4em 0.3em 0.4em;
+    text-align: center;
+    border-bottom: 1px solid #ffff;
+  }
+}
+.VoiceCommands:after,
+.VoiceCommands:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.VoiceCommands:after {
+  border-color: rgba(108, 77, 213, 0);
+  border-top-color: #06aec6;
+  border-width: 20px;
+  margin-left: -20px;
+}
+.VoiceCommands:before {
+  border-color: rgba(245, 245, 245, 0);
+  border-top-color: #ffffff;
+  border-width: 24px;
+  margin-left: -24px;
+}
 
 @media only screen and (max-width: 800px) {
   .Container {
     .Mic {
       svg {
-        padding: 1.3em 1.4em;
+        padding: 1em em;
         transform: scale(2);
       }
     }

@@ -144,18 +144,29 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
   };
 
   return (
-    <div className={classes.Container} onClick={startAssistant}>
-      {assistantStatus ? (
-        <div className={classes.Loading}>
-          {' '}
-          <LoadingRipple />{' '}
-        </div>
-      ) : (
-        <div className={classes.Mic}>
-          <Mic />
+    <>
+      {!assistantStatus && window.innerWidth > 800 && (
+        <div className={classes.VoiceCommands}>
+          <p>Some Commands</p>
+          <p> "add tomato"</p>
+          <p> "purcahsed tomato"</p>
+          <p> "let go of tomato"</p>
+          <p> "delete tomato"</p>
         </div>
       )}
-    </div>
+      <div className={classes.Container} onClick={startAssistant}>
+        {assistantStatus ? (
+          <div className={classes.Loading}>
+            {' '}
+            <LoadingRipple />{' '}
+          </div>
+        ) : (
+          <div className={classes.Mic}>
+            <Mic />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
