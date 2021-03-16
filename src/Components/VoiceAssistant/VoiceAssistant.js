@@ -28,7 +28,7 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
     const speech = new SpeechSynthesisUtterance(text);
     speech.voice = voices();
     speech.lang = 'en-US';
-    speech.rate = 0.8;
+    speech.rate = 0.9;
     window.speechSynthesis.speak(speech);
   };
 
@@ -43,7 +43,7 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
   const handelUpdateItemPurchasedKona = async (name) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/grocery/voice/updateItem',
+        '/grocery/voice/updateItem',
         {
           name,
         },
@@ -52,8 +52,8 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
         }
       );
       if (data.result === 'success') {
-        speak('done');
         updateSuccess();
+        speak('done');
       }
     } catch (error) {
       speak(`could not find the item, please try again`);
@@ -116,8 +116,8 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
 
   let commands = {
     'add (item) *item': handelAddItemKona,
-    'purchased *item': handelUpdateItemPurchasedKona,
-    'letgo (of) *item': handelUpdateItemLetgoKona,
+    'purchase *item': handelUpdateItemPurchasedKona,
+    'let go (of) *item': handelUpdateItemLetgoKona,
     'delete *item': handelDeleteItemKona,
     'hey (kona)': greetUer,
     '(hi) kona': greetUer,
@@ -127,11 +127,16 @@ const VoiceAssistant = ({ updateSuccess, deleteSuccess }) => {
 
   const startAssistant = () => {
     if (!assistantStatus) {
-      annyang.start({ autoRestart: false });
+      annyang.start({ autoRestart: false, continuous: false });
       annyang.addCommands(commands);
+      //   callbacks
+      annyang.addCallback('end', () => {
+        setAssistantStatus(false);
+      });
       setAssistantStatus(true);
     } else {
       annyang.pause();
+      annyang.removeCallback('end');
       annyang.removeCommands();
       annyang.abort();
       setAssistantStatus(false);

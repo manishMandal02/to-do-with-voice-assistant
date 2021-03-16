@@ -24,8 +24,6 @@ const Todo = () => {
 
   //state
   const [enteredItem, setEnteredItem] = useState('');
-  const [updateVoiceSuccess, setUpdateVoiceSuccess] = useState(false);
-  const [deleteVoiceSuccess, setDeleteVoiceSuccess] = useState(false);
 
   const [snackbar1, setSnackbar1] = useState(false);
   const [snackbar2, setSnackbar2] = useState(false);
@@ -70,24 +68,17 @@ const Todo = () => {
     if (addItemSuccess) {
       setEnteredItem('');
     }
-    if (updatePurchaseStateSuccess || updateVoiceSuccess) {
+    if (updatePurchaseStateSuccess) {
       dispatch({
         type: UPDATE_PURCHASE_STATE_RESET,
       });
     }
-    if (deleteItemSuccess || deleteVoiceSuccess) {
+    if (deleteItemSuccess) {
       dispatch({
         type: DELETE_ITEM_RESET,
       });
     }
-  }, [
-    dispatch,
-    addItemSuccess,
-    updatePurchaseStateSuccess,
-    deleteItemSuccess,
-    updateVoiceSuccess,
-    deleteVoiceSuccess,
-  ]);
+  }, [dispatch, addItemSuccess, updatePurchaseStateSuccess, deleteItemSuccess]);
 
   //add item handler
   const handelAddItem = (e) => {
@@ -193,10 +184,14 @@ const Todo = () => {
         <div className={classes.VoiceAssistant}>
           <VoiceAssistant
             updateSuccess={() =>
-              setUpdateVoiceSuccess(updateVoiceSuccess === true ? false : true)
+              // setUpdateVoiceSuccess(updateVoiceSuccess === true ? false : true)
+              // setUpdateVoiceSuccess(true)
+              dispatch(getAllItemsAction())
             }
             deleteSuccess={() =>
-              setDeleteVoiceSuccess(deleteVoiceSuccess === true ? false : true)
+              // setDeleteVoiceSuccess(deleteVoiceSuccess === true ? false : true)
+              // setDeleteVoiceSuccess(true)
+              dispatch(getAllItemsAction())
             }
           />
         </div>
