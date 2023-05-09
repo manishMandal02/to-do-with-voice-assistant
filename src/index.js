@@ -8,7 +8,7 @@ import App from './App';
 
 import store from './Store/Store';
 
-axios.defaults.baseURL = 'https://todo-voice.herokuapp.com/';
+axios.defaults.baseURL = 'https://todo-voice.onrender.com/';
 
 ReactDOM.render(
   <Provider store={store}>
